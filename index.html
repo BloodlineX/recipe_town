@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Recipe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="app" id="app">
+
+  <!-- ============ HOME / WHEEL SCREEN ============ -->
+  <section class="screen screen--home" id="homeScreen">
+
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 6c-7.2 0-12 5.2-12 10.5 0 1 .2 2 .5 3H11a2 2 0 0 0-2 2c0 7.5 5.3 12.5 12 13.8V38h6v-2.7c6.7-1.3 12-6.3 12-13.8a2 2 0 0 0-2-2h-1.5c.3-1 .5-2 .5-3C35.5 11.2 31.2 6 24 6Z" fill="var(--brand-mark-fill)"/>
+            <path d="M18.5 15.5c0-3 2.5-6 5.5-6M24.5 13c0-2.3 1.7-4.5 4-5" stroke="var(--brand-mark-stroke)" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="brand-word">Recipe<span>Town</span></span>
+      </div>
+
+      <div class="food-pill" aria-label="Browsing all recipes">
+        <span class="food-pill-dot"></span>
+        Food
+      </div>
+
+      <div class="topbar-spacer" aria-hidden="true"></div>
+    </header>
+
+    <div class="stage">
+
+      <div class="dish-info">
+        <p class="dish-meta" id="dishMeta">30 min &middot; Easy &middot; Serves 4</p>
+        <h1 class="dish-name" id="dishName">Kadhai Paneer</h1>
+        <p class="dish-desc" id="dishDesc">Description goes here.</p>
+        <button class="btn-primary" id="viewRecipeBtn" type="button">View recipe</button>
+
+        <div class="dish-dots" id="dishDots" aria-hidden="true"></div>
+      </div>
+
+      <div class="wheel">
+        <div class="wheel-blob" aria-hidden="true"></div>
+        <div class="wheel-path" aria-hidden="true"></div>
+        <div class="orbit" id="orbit"></div>
+
+        <div class="wheel-controls">
+          <button class="nav-btn" id="prevBtn" type="button" aria-label="Previous dish">&#8249;</button>
+          <button class="nav-btn" id="nextBtn" type="button" aria-label="Next dish">&#8250;</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- mascot -->
+    <div class="mascot" id="mascot" aria-hidden="true">
+      <span class="mascot-shadow"></span>
+      <img class="mascot-img" src="images/mascot-chili.png" alt="" />
+    </div>
+
+  </section>
+
+  <!-- ============ RECIPE SCREEN ============ -->
+  <section class="screen screen--recipe" id="recipeScreen" hidden>
+
+    <header class="recipe-top">
+      <button class="back-btn" id="backToHome" type="button">&#8249; Back to recipes</button>
+      <p class="recipe-eyebrow" id="recipeEyebrow">30 min &middot; Easy &middot; Serves 4</p>
+    </header>
+
+    <!-- ---- Steps & Ingredients view ---- -->
+    <div class="recipe-body" id="stepsView">
+      <h2 class="section-heading" id="recipeDishName">Steps &amp; Ingredients</h2>
+
+      <div class="recipe-grid">
+
+        <aside class="ingredients-panel">
+          <h3>Ingredients</h3>
+          <ul class="ingredients-list" id="ingredientsList"></ul>
+        </aside>
+
+        <div class="step-panel">
+          <div class="step-progress-track">
+            <div class="step-progress-fill" id="stepProgressFill"></div>
+          </div>
+
+          <div class="step-card" id="stepCard">
+            <span class="step-index" id="stepIndex">Step 1 of 6</span>
+            <h3 class="step-title" id="stepTitle">Title</h3>
+            <p class="step-text" id="stepText">Text</p>
+          </div>
+
+          <div class="step-visual" id="stepVisual" aria-hidden="true">
+            <span class="step-visual-ring"></span>
+            <img class="step-visual-img" id="stepImg" src="" alt="" />
+          </div>
+
+          <div class="step-actions">
+            <button class="btn-ghost" id="backStepBtn" type="button">Back</button>
+            <button class="btn-primary" id="nextStepBtn" type="button">Next step</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ---- Final plated dish view ---- -->
+    <div class="recipe-body recipe-final" id="finalView" hidden>
+
+      <div class="bowl-stage">
+        <span class="steam s1"></span>
+        <span class="steam s2"></span>
+        <span class="steam s3"></span>
+        <div class="plate-mat" aria-hidden="true"></div>
+        <div class="plate-final">
+          <img id="bowlImg" src="" alt="" />
+        </div>
+      </div>
+
+      <h2 class="final-heading" id="finalHeading">Your Kadhai Paneer is ready!</h2>
+      <p class="final-sub">Approximate nutrition, per serving</p>
+
+      <div class="nutrition" id="nutritionWheel">
+        <svg class="nutri-lines" viewBox="0 0 250 250" aria-hidden="true">
+          <line class="n-line n-cal"   x1="125" y1="125" x2="125" y2="18"  marker-end="url(#arrowCal)"/>
+          <line class="n-line n-prot"  x1="125" y1="125" x2="226" y2="125" marker-end="url(#arrowProt)"/>
+          <line class="n-line n-carb"  x1="125" y1="125" x2="125" y2="232" marker-end="url(#arrowCarb)"/>
+          <line class="n-line n-fat"   x1="125" y1="125" x2="24"  y2="125" marker-end="url(#arrowFat)"/>
+          <defs>
+            <marker id="arrowCal" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="6" refY="6"><circle cx="6" cy="6" r="5" class="n-dot n-dot-cal"/></marker>
+            <marker id="arrowProt" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="6" refY="6"><circle cx="6" cy="6" r="5" class="n-dot n-dot-prot"/></marker>
+            <marker id="arrowCarb" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="6" refY="6"><circle cx="6" cy="6" r="5" class="n-dot n-dot-carb"/></marker>
+            <marker id="arrowFat" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="6" refY="6"><circle cx="6" cy="6" r="5" class="n-dot n-dot-fat"/></marker>
+          </defs>
+        </svg>
+
+        <div class="nutri-center" id="nutriCenter">
+          <img id="nutriImg" src="" alt="" />
+        </div>
+
+        <div class="nutri-point pos-top" id="nutriCalories">
+          <strong></strong><span><i class="swatch sw-cal"></i>Calories</span>
+        </div>
+        <div class="nutri-point pos-right" id="nutriProtein">
+          <strong></strong><span><i class="swatch sw-prot"></i>Protein</span>
+        </div>
+        <div class="nutri-point pos-bottom" id="nutriCarbs">
+          <strong></strong><span><i class="swatch sw-carb"></i>Carbs</span>
+        </div>
+        <div class="nutri-point pos-left" id="nutriFat">
+          <strong></strong><span><i class="swatch sw-fat"></i>Fat</span>
+        </div>
+      </div>
+
+      <div class="vitamin-tags" id="vitaminTags"></div>
+
+      <div class="final-actions">
+        <button class="btn-primary" id="cookAnotherBtn" type="button">Cook another recipe</button>
+      </div>
+    </div>
+
+  </section>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
